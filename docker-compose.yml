@@ -1,0 +1,25 @@
+services:
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:
+      - "29082:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
+    ports:
+      - '2181:2181'
+  postgres:
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: postgres
+    ports:
+      - "5401:5432"
