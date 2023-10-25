@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    open-in-view: false
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    generate-ddl: true
+  datasource:
+    url: jdbc:postgresql://localhost:5401/postgres?currentSchema=kafka-demo&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  kafka:
+    bootstrap-servers: localhost:29092
