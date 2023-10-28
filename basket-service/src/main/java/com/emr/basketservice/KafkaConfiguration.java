@@ -30,7 +30,7 @@ public class KafkaConfiguration {
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic("basket-transaction", 1, (short) 1);
+        return new NewTopic("product-stock-drop-topic", 1, (short) 1);
     }
 
     @Bean

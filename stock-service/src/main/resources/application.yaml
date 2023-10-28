@@ -1,3 +1,18 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: localhost:9092
+  jpa:
+    open-in-view: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+#    generate-ddl: false
+#    hibernate:
+#      ddl-auto: create
+  datasource:
+    url: jdbc:postgresql://localhost:5401/stock-db
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver

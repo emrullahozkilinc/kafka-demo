@@ -11,7 +11,6 @@ public class BasketService {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void addToBasket() {
-
-        kafkaTemplate.send("product-stock-drop-topic", "1");
+        kafkaTemplate.send("product-stock-drop-topic", "7f13fa9a-c755-4c4d-8b25-5e7ba8440074");
     }
 }

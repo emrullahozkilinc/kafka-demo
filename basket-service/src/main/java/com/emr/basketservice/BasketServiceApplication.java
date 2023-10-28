@@ -18,7 +18,7 @@ public class BasketServiceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		while (true) {
-			Thread.sleep(100);
+			Thread.sleep(1000);
 			basketService.addToBasket();
 		}
 	}
