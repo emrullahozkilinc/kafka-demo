@@ -1,7 +1,7 @@
 package com.emr.stockservice;
 
-import com.emr.stockservice.data.MakePayment;
-import com.emr.stockservice.data.ProductStockDropPayload;
+import com.emr.stockservice.data.kafka_payload.MakePayment;
+import com.emr.stockservice.data.kafka_payload.ProductStockDropPayload;
 import com.emr.stockservice.data.Stock;
 import com.emr.stockservice.data.StockRepository;
 import jakarta.transaction.Transactional;
@@ -23,12 +23,12 @@ public class StockService {
     private final StockRepository stockRepository;
     private final KafkaTemplate<String, MakePayment> kafkaTemplate;
 
-    @KafkaListener(topics = "product-stock-drop-topic", groupId = "1")
+    @KafkaListener(topics = "product-stock-drop-topic", groupId = "1", contentTypeConverter = "jsonConverter")
     @Transactional
     public void dropStock(ProductStockDropPayload payload) {
-        dropStockFromDb(payload.productId());
-        makePayment(new MakePayment(payload.basketId(), payload.userId(), payload.amount()));
-        log.info("{} idli ürün stoktan 1 düşürüldü.", payload.productId());
+        dropStockFromDb(payload.getProductId());
+        makePayment(new MakePayment(payload.getBasketId(), payload.getUserId(), payload.getAmount()));
+        log.info("{} idli ürün stoktan 1 düşürüldü.", payload.getProductId());
     }
 
     private void makePayment(MakePayment makePayment) {

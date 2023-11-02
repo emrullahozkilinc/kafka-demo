@@ -1,4 +1,4 @@
-package com.emr.paymentservice;
+package com.emr.paymentservice.service;
 
 import com.emr.paymentservice.data.dbmodel.Bank;
 import com.emr.paymentservice.data.repository.BankRepository;

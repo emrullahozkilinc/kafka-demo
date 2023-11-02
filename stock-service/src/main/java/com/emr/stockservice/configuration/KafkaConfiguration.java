@@ -1,23 +1,22 @@
-package com.emr.stockservice;
+package com.emr.stockservice.configuration;
 
-import com.emr.stockservice.data.MakePayment;
+import com.emr.stockservice.data.kafka_payload.MakePayment;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.annotation.EnableKafka;
-import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.messaging.converter.GsonMessageConverter;
+import org.springframework.messaging.converter.SmartMessageConverter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@EnableKafka
+@Configuration
 public class KafkaConfiguration {
 
     @Value(value = "${spring.kafka.bootstrap-servers}")
@@ -48,5 +47,10 @@ public class KafkaConfiguration {
     @Bean
     public KafkaTemplate<String, MakePayment> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
+    }
+
+    @Bean("jsonConverter")
+    public SmartMessageConverter messageConverter(){
+        return new GsonMessageConverter();
     }
 }

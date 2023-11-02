@@ -1,4 +1,4 @@
-package com.emr.stockservice.data;
+package com.emr.stockservice.data.kafka_payload;
 
 import java.math.BigDecimal;
 import java.util.UUID;

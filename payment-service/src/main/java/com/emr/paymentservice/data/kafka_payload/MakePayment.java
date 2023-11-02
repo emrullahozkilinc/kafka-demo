@@ -1,4 +1,4 @@
-package com.emr.paymentservice.data.listener_dto;
+package com.emr.paymentservice.data.kafka_payload;
 
 import java.math.BigDecimal;
 import java.util.UUID;

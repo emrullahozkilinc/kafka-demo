@@ -1,9 +1,11 @@
 package com.emr.basketservice;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -21,5 +23,10 @@ public class BasketServiceApplication implements CommandLineRunner {
 			Thread.sleep(1000);
 			basketService.addToBasket();
 		}
+	}
+
+	@Bean
+	public ObjectMapper objectMapper() {
+		return new ObjectMapper();
 	}
 }

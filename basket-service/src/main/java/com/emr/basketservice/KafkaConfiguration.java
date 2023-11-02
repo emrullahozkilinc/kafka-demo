@@ -12,6 +12,8 @@ import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.messaging.converter.GsonMessageConverter;
+import org.springframework.messaging.converter.SmartMessageConverter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,4 +49,10 @@ public class KafkaConfiguration {
     public KafkaTemplate<String, ProductStockDropPayload> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
+
+    @Bean("jsonConverter")
+    public SmartMessageConverter messageConverter(){
+        return new GsonMessageConverter();
+    }
+
 }
